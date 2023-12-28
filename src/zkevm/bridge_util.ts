@@ -32,6 +32,7 @@ interface IClaimPayload {
     destinationAddress: string;
     amount: TYPE_AMOUNT;
     metadata: string;
+    networkId: number;
 }
 
 export class BridgeUtil {
@@ -116,6 +117,7 @@ export class BridgeUtil {
                 payload.destinationAddress = destinationAddress;
                 payload.amount = amount;
                 payload.metadata = metadata;
+                payload.networkId = networkId;
                 return payload;
             });
         });
