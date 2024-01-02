@@ -5,7 +5,7 @@ const execute = async () => {
   const client = await getZkEvmClient();
   const erc20Token = client.erc20(zkEvm.parent.erc20, true);
 
-  const result = await erc20Token.withdrawExit(transactionHash);
+  const result = await erc20Token.rolloutExit(transactionHash);
 
   const txHash = await result.getTransactionHash();
   console.log("txHash", txHash);

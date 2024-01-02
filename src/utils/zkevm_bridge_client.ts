@@ -18,7 +18,7 @@ export class ZkEvmBridgeClient {
      * @returns
      * @memberof ZkEvmBridgeClient
      */
-    isDepositClaimable(txHash: string) {
+    isRollinClaimable(txHash: string) {
         return Promise.all([this.rootChainBridge.networkID(), this.bridgeUtil.getBridgeLogData(
             txHash, true
         )]).then(result => {
@@ -39,7 +39,7 @@ export class ZkEvmBridgeClient {
      * @returns
      * @memberof ZkEvmBridgeClient
      */
-    isWithdrawExitable(txHash: string) {
+    isRolloutExitable(txHash: string) {
         return Promise.all([this.childChainBridge.networkID(), this.bridgeUtil.getBridgeLogData(
             txHash, false
         )]).then(result => {
@@ -60,7 +60,7 @@ export class ZkEvmBridgeClient {
      * @returns
      * @memberof ZkEvmBridgeClient
      */
-    isDeposited(txHash: string) {
+    isRollined(txHash: string) {
         return this.bridgeUtil.getBridgeLogData(
             txHash, true
         ).then(result => {
@@ -75,7 +75,7 @@ export class ZkEvmBridgeClient {
      * @returns
      * @memberof ZkEvmBridgeClient
      */
-    isExited(txHash: string) {
+    isRollouted(txHash: string) {
         return this.bridgeUtil.getBridgeLogData(
             txHash, false
         ).then(result => {

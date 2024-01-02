@@ -4,7 +4,7 @@ const execute = async () => {
   const client = await getZkEvmClient();
   const erc20Token = client.erc20(zkEvm.parent.erc20, true);
 
-  const result = await erc20Token.depositWithPermit(10, from, {
+  const result = await erc20Token.rollinWithPermit(10, from, {
     from
   });
 

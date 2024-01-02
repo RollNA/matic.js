@@ -5,7 +5,7 @@ const execute = async () => {
   const client = await getZkEvmClient();
   const erc20Token = client.erc20(zkEvm.child.erc20);
 
-  const result = await erc20Token.depositClaim(transactionHash, {
+  const result = await erc20Token.rollinClaim(transactionHash, {
     from, 
     gasLimit: 300000,
     gasPrice: 50000000000,

@@ -151,7 +151,7 @@ export class ERC20 extends ZkEvmToken {
     }
 
     /**
-     * Deposit given amount of token for user
+     * Rollin given amount of token for user
      *
      * @param {TYPE_AMOUNT} amount
      * @param {string} userAddress
@@ -159,8 +159,8 @@ export class ERC20 extends ZkEvmToken {
      * @returns
      * @memberof ERC20
      */
-    deposit(amount: TYPE_AMOUNT, userAddress: string, option: IBridgeTransactionOption = {}) {
-        this.checkForRoot("deposit");
+    rollin(amount: TYPE_AMOUNT, userAddress: string, option: IBridgeTransactionOption = {}) {
+        this.checkForRoot("rollin");
         const permitData = option.permitData || '0x';
         const forceUpdateGlobalExitRoot = option.forceUpdateGlobalExitRoot || true;
 
@@ -187,7 +187,7 @@ export class ERC20 extends ZkEvmToken {
     }
 
     /**
-     * Deposit given amount of token for user along with ETH for gas token
+     * Rollin given amount of token for user along with ETH for gas token
      *
      * @param {TYPE_AMOUNT} amount
      * @param {string} userAddress
@@ -195,8 +195,8 @@ export class ERC20 extends ZkEvmToken {
      * @returns
      * @memberof ERC20
      */
-    depositWithGas(amount: TYPE_AMOUNT, userAddress: string, ethGasAmount: TYPE_AMOUNT, option: IBridgeTransactionOption = {}) {
-        this.checkForRoot("deposit");
+    rollinWithGas(amount: TYPE_AMOUNT, userAddress: string, ethGasAmount: TYPE_AMOUNT, option: IBridgeTransactionOption = {}) {
+        this.checkForRoot("rollin");
 
         const amountInABI = this.client.parent.encodeParameters(
             [Converter.toHex(amount)],
@@ -225,7 +225,7 @@ export class ERC20 extends ZkEvmToken {
     }
 
     /**
-     * Deposit given amount of token for user along with ETH for gas token
+     * Rollin given amount of token for user along with ETH for gas token
      *
      * @param {TYPE_AMOUNT} amount
      * @param {string} userAddress
@@ -233,8 +233,8 @@ export class ERC20 extends ZkEvmToken {
      * @returns
      * @memberof ERC20
      */
-    depositPermitWithGas(amount: TYPE_AMOUNT, userAddress: string, ethGasAmount: TYPE_AMOUNT, option: IBridgeTransactionOption = {}) {
-        this.checkForRoot("deposit");
+    rollinPermitWithGas(amount: TYPE_AMOUNT, userAddress: string, ethGasAmount: TYPE_AMOUNT, option: IBridgeTransactionOption = {}) {
+        this.checkForRoot("rollin");
         this.checkForNonNative("getPermitData");
 
         const amountInABI = this.client.parent.encodeParameters(
@@ -261,7 +261,7 @@ export class ERC20 extends ZkEvmToken {
     }
 
     /**
-     * Deposit given amount of token for user with permit call
+     * Rollin given amount of token for user with permit call
      *
      * @param {TYPE_AMOUNT} amount
      * @param {string} userAddress
@@ -269,9 +269,9 @@ export class ERC20 extends ZkEvmToken {
      * @returns
      * @memberof ERC20
      */
-    depositWithPermit(amount: TYPE_AMOUNT, userAddress: string, option: IApproveTransactionOption = {}) {
-        this.checkForRoot("deposit");
-        this.checkForNonNative("depositWithPermit");
+    rollinWithPermit(amount: TYPE_AMOUNT, userAddress: string, option: IApproveTransactionOption = {}) {
+        this.checkForRoot("rollin");
+        this.checkForNonNative("rollinWithPermit");
 
         const amountInABI = this.client.parent.encodeParameters(
             [Converter.toHex(amount)],
@@ -303,12 +303,12 @@ export class ERC20 extends ZkEvmToken {
      * @returns
      * @memberof ERC20
      */
-    depositCustomERC20(amount: TYPE_AMOUNT, userAddress: string, forceUpdateGlobalExitRoot = true) {
+    rollinCustomERC20(amount: TYPE_AMOUNT, userAddress: string, forceUpdateGlobalExitRoot = true) {
         // should be allowed to be used only in root chain
-        this.checkForRoot("depositCustomERC20");
-        this.checkAdapterPresent("depositCustomERC20");
+        this.checkForRoot("rollinCustomERC20");
+        this.checkAdapterPresent("rollinCustomERC20");
         // should not be allowed to use for native asset
-        this.checkForNonNative("depositCustomERC20");
+        this.checkForNonNative("rollinCustomERC20");
         return this.bridgeAdapter.bridgeToken(userAddress, amount, forceUpdateGlobalExitRoot);
     }
 
@@ -319,8 +319,8 @@ export class ERC20 extends ZkEvmToken {
      * @returns
      * @memberof ERC20
      */
-    customERC20DepositClaim(transactionHash: string, option?: ITransactionOption) {
-        this.checkForChild("customERC20DepositClaim");
+    customERC20RollinClaim(transactionHash: string, option?: ITransactionOption) {
+        this.checkForChild("customERC20RollinClaim");
         return this.parentBridge.networkID().then(networkId => {
             return this.bridgeUtil.buildPayloadForClaim(
               transactionHash, true, networkId
@@ -345,15 +345,15 @@ export class ERC20 extends ZkEvmToken {
 
 
     /**
-     * Complete deposit after GlobalExitRootManager is synced from Parent to root
+     * Complete rollin after GlobalExitRootManager is synced from Parent to root
      *
      * @param {string} transactionHash
      * @param {ITransactionOption} [option]
      * @returns
      * @memberof ERC20
      */
-    depositClaim(transactionHash: string, option?: ITransactionOption) {
-        this.checkForChild("depositClaim");
+    rollinClaim(transactionHash: string, option?: ITransactionOption) {
+        this.checkForChild("rollinClaim");
         return this.parentBridge.networkID().then(networkId => {
             return this.bridgeUtil.buildPayloadForClaim(
                 transactionHash, true, networkId
@@ -377,7 +377,7 @@ export class ERC20 extends ZkEvmToken {
     }
 
     /**
-     * initiate withdraw by burning provided amount
+     * initiate rollout by burning provided amount
      *
      * @param {TYPE_AMOUNT} amount
      * @param {string} userAddress
@@ -385,8 +385,8 @@ export class ERC20 extends ZkEvmToken {
      * @returns
      * @memberof ERC20
      */
-    withdraw(amount: TYPE_AMOUNT, userAddress: string, option: IBridgeTransactionOption = {}) {
-        this.checkForChild("withdraw");
+    rollout(amount: TYPE_AMOUNT, userAddress: string, option: IBridgeTransactionOption = {}) {
+        this.checkForChild("rollout");
         const permitData = option.permitData || '0x';
         const forceUpdateGlobalExitRoot = option.forceUpdateGlobalExitRoot || true;
 
@@ -420,12 +420,12 @@ export class ERC20 extends ZkEvmToken {
      * @returns
      * @memberof ERC20
      */
-    withdrawCustomERC20(amount: TYPE_AMOUNT, userAddress: string, forceUpdateGlobalExitRoot = true) {
+    rolloutCustomERC20(amount: TYPE_AMOUNT, userAddress: string, forceUpdateGlobalExitRoot = true) {
         // should be allowed to be used only in root chain
-        this.checkForChild("withdrawCustomERC20");
-        this.checkAdapterPresent("depositCustomERC20");
+        this.checkForChild("rolloutCustomERC20");
+        this.checkAdapterPresent("rollinCustomERC20");
         // should not be allowed to use for native asset
-        this.checkForNonNative("withdrawCustomERC20");
+        this.checkForNonNative("rolloutCustomERC20");
         return this.bridgeAdapter.bridgeToken(userAddress, amount, forceUpdateGlobalExitRoot);
     }
 
@@ -436,8 +436,8 @@ export class ERC20 extends ZkEvmToken {
      * @returns
      * @memberof ERC20
      */
-    customERC20WithdrawExit(burnTransactionHash: string, option?: ITransactionOption) {
-        this.checkForRoot("customERC20WithdrawExit");
+    customERC2RrolloutExit(burnTransactionHash: string, option?: ITransactionOption) {
+        this.checkForRoot("customERC20RolloutExit");
         return this.childBridge.networkID().then(networkId => {
             return this.bridgeUtil.buildPayloadForClaim(
               burnTransactionHash, false, networkId
@@ -461,7 +461,7 @@ export class ERC20 extends ZkEvmToken {
     }
 
     /**
-     * initiate withdraw by transferring amount with PermitData for native tokens
+     * initiate rollout by transferring amount with PermitData for native tokens
      *
      * @param {TYPE_AMOUNT} amount
      * @param {string} userAddress
@@ -469,8 +469,8 @@ export class ERC20 extends ZkEvmToken {
      * @returns
      * @memberof ERC20
      */
-    withdrawWithPermit(amount: TYPE_AMOUNT, userAddress: string, option: IApproveTransactionOption = {}) {
-        this.checkForChild("withdraw");
+    rolloutWithPermit(amount: TYPE_AMOUNT, userAddress: string, option: IApproveTransactionOption = {}) {
+        this.checkForChild("rollout");
 
         const amountInABI = this.client.parent.encodeParameters(
             [Converter.toHex(amount)],
@@ -495,15 +495,15 @@ export class ERC20 extends ZkEvmToken {
     }
 
     /**
-     * Complete deposit after GlobalExitRootManager is synced from Parent to root
+     * Complete rollin after GlobalExitRootManager is synced from Parent to root
      *
      * @param {string} burnTransactionHash
      * @param {ITransactionOption} [option]
      * @returns
      * @memberof ERC20
      */
-    withdrawExit(burnTransactionHash: string, option?: ITransactionOption) {
-        this.checkForRoot("withdrawExit");
+    rolloutExit(burnTransactionHash: string, option?: ITransactionOption) {
+        this.checkForRoot("rolloutExit");
         return this.childBridge.networkID().then(networkId => {
             return this.bridgeUtil.buildPayloadForClaim(
                 burnTransactionHash, false, networkId

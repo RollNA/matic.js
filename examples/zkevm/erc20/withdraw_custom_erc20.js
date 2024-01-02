@@ -7,7 +7,7 @@ const execute = async () => {
   /**
    * Make sure the sufficient spending approval is done
    */
-  const result = await erc20Token.withdrawCustomERC20("1000000000000000000", from, true);
+  const result = await erc20Token.rolloutCustomERC20("1000000000000000000", from, true);
   const txHash = await result.getTransactionHash();
   console.log("txHash", txHash);
   const receipt = await result.getReceipt();
