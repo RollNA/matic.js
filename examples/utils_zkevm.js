@@ -1,7 +1,7 @@
 const bn = require('bn.js')
 const HDWalletProvider = require('@truffle/hdwallet-provider')
 const config = require('./config')
-const { ZkEvmClient, use } = require('@maticnetwork/maticjs')
+const { ZkEvmClient, use } = require('..')
 const SCALING_FACTOR = new bn(10).pow(new bn(18))
 const { Web3ClientPlugin } = require('@maticnetwork/maticjs-web3')
 
