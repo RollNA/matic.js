@@ -15,8 +15,10 @@ module.exports = {
       child: process.env.MATIC_RPC || 'https://rpc-mumbai.matic.today',
     },
     zkEvm: {
-      parent: process.env.GOERLI_ROOT_RPC,
-      child: process.env.ZKEVM_RPC || 'https://rpc.public.zkevm-test.net',
+      // parent: process.env.GOERLI_ROOT_RPC,
+      parent: "http://127.0.0.1:8545",
+      // child: process.env.ZKEVM_RPC || 'https://rpc.public.zkevm-test.net',
+      child: "http://127.0.0.1:8123",
     },
   },
   pos: {
@@ -55,12 +57,14 @@ module.exports = {
   WATCHER_URL: 'https://testnetv3-watcher.api.matic.network/api/v1', // Backend service which syncs the Matic Plasma contract events on Ethereum mainchain to a MySQL database which we use for faster querying. This comes in handy especially for listening to asset deposits on the Plasma contract.
   user1: {
     // '<paste your private key here>' - A sample private key prefix with `0x`
-    privateKey: process.env.USER1_PRIVATE_KEY,
+    // privateKey: process.env.USER1_PRIVATE_KEY,
+    privateKey: 'ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80',
     //'<paste address belonging to private key here>', Your address
-    address: process.env.USER1_FROM
+    // address: process.env.USER1_FROM
+    address: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
   },
   user2: {
-    address: process.env.USER2_FROM
+    address: '0xDF3dea15BC2D5b2F6821B55DefEDcD793f2D4Eb3'
   },
   proofApi: process.env.PROOF_API || 'https://proof-generator.polygon.technology/'
 }
