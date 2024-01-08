@@ -60,10 +60,10 @@ export class ZkEvmBridgeClient {
      * @memberof ZkEvmBridgeClient
      */
     isDeposited(txHash: string) {
-        return this.bridgeUtil.getBridgeLogData(
+        return Promise.all([this.rootChainBridge.networkID(), this.bridgeUtil.getBridgeLogData(
             txHash, true
-        ).then(result => {
-            return this.childChainBridge.isClaimed(result.depositCount);
+        )]).then(result => {
+            return this.childChainBridge.isClaimed(result[0], result[1].depositCount);
         });
     }
 
@@ -75,10 +75,10 @@ export class ZkEvmBridgeClient {
      * @memberof ZkEvmBridgeClient
      */
     isExited(txHash: string) {
-        return this.bridgeUtil.getBridgeLogData(
+        return Promise.all([this.childChainBridge.networkID(), this.bridgeUtil.getBridgeLogData(
             txHash, false
-        ).then(result => {
-            return this.rootChainBridge.isClaimed(result.depositCount);
+        )]).then(result => {
+            return this.rootChainBridge.isClaimed(result[0], result[1].depositCount);
         });
     }
 
