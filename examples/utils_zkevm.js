@@ -18,12 +18,14 @@ const getZkEvmClient = (optional = {}, network = 'testnet', version = 'starfish'
     network: network,
     version: version,
     child: {
+      name: 'cycle',
       provider: new HDWalletProvider(privateKey, config.rpc.zkEvm.cycle),
       defaultConfig: {
         from: userAddress,
       },
     },
     parent: {
+      name: 'goerli',
       provider: new HDWalletProvider(privateKey, config.rpc.zkEvm.goerli),
       defaultConfig: {
         from: userAddress,

@@ -19,8 +19,8 @@ export class ZkEvmClient extends ZkEvmBridgeClient {
         const client = this.client;
 
         return client.init(config).then(_ => {
-            const mainZkEvmContracts = client.mainZkEvmContracts;
-            const zkEvmContracts = client.zkEvmContracts;
+            const mainZkEvmContracts = client.getNetworkContracts(config.parent.name);
+            const zkEvmContracts = client.getNetworkContracts(config.child.name);
             client.config = config = Object.assign(
                 {
                     parentBridge: mainZkEvmContracts.PolygonZkEVMBridgeProxy,

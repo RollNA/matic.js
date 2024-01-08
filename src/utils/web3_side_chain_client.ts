@@ -83,6 +83,10 @@ export class Web3SideChainClient<T_CONFIG> {
         return this.getConfig("zkEVM.Contracts");
     }
 
+    getNetworkContracts(network: string) {
+        return this.getConfig(`${network}.Contracts`);
+    }
+
     isEIP1559Supported(chainId: number): boolean {
         return this.getConfig(`${chainIdToConfigPath[chainId]}.SupportsEIP1559`);
     }
