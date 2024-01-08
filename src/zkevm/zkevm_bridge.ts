@@ -218,10 +218,11 @@ export class ZkEvmBridge extends BaseToken<IZkEvmClientConfig> {
      * @memberof ZkEvmBridge
      */
     isClaimed(
+        networkID: number,
         index: number,
     ) {
         return this.method(
-            "isClaimed", index
+            "isClaimed", networkID, index
         ).then(method => {
             return this.processRead<string>(method);
         });
