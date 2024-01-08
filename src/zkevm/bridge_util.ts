@@ -4,6 +4,7 @@ import { IBaseClientConfig } from "..";
 import { TYPE_AMOUNT } from '../types';
 
 interface IBridgeEventInfo {
+    leafType: number;
     originNetwork: number;
     originTokenAddress: string;
     destinationNetwork: number;
@@ -32,11 +33,17 @@ interface IClaimPayload {
     destinationAddress: string;
     amount: TYPE_AMOUNT;
     metadata: string;
+    fromNetwork: number;
 }
 
 export class BridgeUtil {
     private client_: Web3SideChainClient<IBaseClientConfig>;
-    private BRIDGE_TOPIC = "0x501781209a1f8899323b96b4ef08b168df93e0a90c673d1e4cce39366cb62f9b";
+    // ethers.utils.id('BridgeEvent(uint8,uint32,address,uint32,address,uint256,bytes,uint32)')
+    //private BRIDGE_TOPIC = "0x501781209a1f8899323b96b4ef08b168df93e0a90c673d1e4cce39366cb62f9b";
+
+    // modified by thomas
+    // ethers.utils.id('BridgeEvent(uint8,uint32,address,uint32,address,uint256,bytes,uint32,uint32)')
+    private BRIDGE_TOPIC = "0xf87f5473ac3d6f975b9ee2c05de68df675fa205d066a79e70041b51253a258db";
 
     constructor(client: Web3SideChainClient<IBaseClientConfig>) {
         this.client_ = client;
@@ -116,6 +123,7 @@ export class BridgeUtil {
                 payload.destinationAddress = destinationAddress;
                 payload.amount = amount;
                 payload.metadata = metadata;
+                payload.fromNetwork = networkId;
                 return payload;
             });
         });

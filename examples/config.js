@@ -15,8 +15,8 @@ module.exports = {
       child: process.env.MATIC_RPC || 'https://rpc-mumbai.matic.today',
     },
     zkEvm: {
-      parent: process.env.GOERLI_ROOT_RPC,
-      child: process.env.ZKEVM_RPC || 'https://rpc.public.zkevm-test.net',
+      goerli: process.env.GOERLI_ROOT_RPC,
+      cycle: process.env.CYCLE_RPC || 'https://rpc.public.zkevm-test.net',
     },
   },
   pos: {
@@ -34,7 +34,7 @@ module.exports = {
     },
   },
   zkEvm: {
-    parent: {
+    goerli: {
       bridgeAdapter: "0x5eB6485573C2Ea289554A044e1D34b41958c0842",
       ether: '0x0000000000000000000000000000000000000000',
       // erc20: '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6', // WETH
@@ -43,7 +43,7 @@ module.exports = {
       // erc20: '0xe7e7ad60b75614829be79a3014c5c6aeb006e079', // UNI TEMP
       erc20: '0x4701Aa9471d7bfAc765D87dcb1Ea6BB23AD32733' // Polygon
     },
-    child: {
+    cycle: {
       bridgeAdapter: "0x6b0393fD45B1a95EfB1bcd93536DaB44417119C3",
       ether: '0x0000000000000000000000000000000000000000',
       // erc20: '0x270969e59d170fB576cBB5E254493e9bfB13684f', // WETH

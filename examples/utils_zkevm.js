@@ -10,7 +10,7 @@ use(Web3ClientPlugin)
 const privateKey = config.user1.privateKey
 const userAddress = config.user1.address
 
-const getZkEvmClient = (optional = {}, network = 'testnet', version = 'blueberry') => {
+const getZkEvmClient = (optional = {}, network = 'testnet', version = 'starfish') => {
   const zkEvmClient = new ZkEvmClient()
   return zkEvmClient.init({
     ...optional,
@@ -18,13 +18,13 @@ const getZkEvmClient = (optional = {}, network = 'testnet', version = 'blueberry
     network: network,
     version: version,
     child: {
-      provider: new HDWalletProvider(privateKey, config.rpc.zkEvm.child),
+      provider: new HDWalletProvider(privateKey, config.rpc.zkEvm.cycle),
       defaultConfig: {
         from: userAddress,
       },
     },
     parent: {
-      provider: new HDWalletProvider(privateKey, config.rpc.zkEvm.parent),
+      provider: new HDWalletProvider(privateKey, config.rpc.zkEvm.goerli),
       defaultConfig: {
         from: userAddress,
       },
@@ -32,10 +32,15 @@ const getZkEvmClient = (optional = {}, network = 'testnet', version = 'blueberry
   })
 }
 
+const zkEvm = {
+  parent: config.zkEvm.goerli,
+  child: config.zkEvm.cycle
+}
+
 module.exports = {
   SCALING_FACTOR,
   getZkEvmClient: getZkEvmClient,
-  zkEvm: config.zkEvm,
+  zkEvm: zkEvm,
   from: config.user1.address,
   privateKey: config.user1.privateKey,
   to: config.user2.address,

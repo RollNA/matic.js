@@ -328,6 +328,7 @@ export class ERC20 extends ZkEvmToken {
         }).then(payload => {
             return this.childBridge.claimMessage(
               payload.smtProof,
+              payload.fromNetwork,
               payload.index,
               payload.mainnetExitRoot,
               payload.rollupExitRoot,
@@ -360,6 +361,7 @@ export class ERC20 extends ZkEvmToken {
         }).then(payload => {
             return this.childBridge.claimAsset(
                 payload.smtProof,
+                payload.fromNetwork,
                 payload.index,
                 payload.mainnetExitRoot,
                 payload.rollupExitRoot,
@@ -443,6 +445,7 @@ export class ERC20 extends ZkEvmToken {
         }).then(payload => {
             return this.parentBridge.claimMessage(
               payload.smtProof,
+              payload.fromNetwork,
               payload.index,
               payload.mainnetExitRoot,
               payload.rollupExitRoot,
@@ -508,6 +511,7 @@ export class ERC20 extends ZkEvmToken {
         }).then(payload => {
             return this.parentBridge.claimAsset(
                 payload.smtProof,
+                payload.fromNetwork,
                 payload.index,
                 payload.mainnetExitRoot,
                 payload.rollupExitRoot,

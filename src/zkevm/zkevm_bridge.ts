@@ -75,6 +75,7 @@ export class ZkEvmBridge extends BaseToken<IZkEvmClientConfig> {
      */
     claimAsset(
         smtProof: string[],
+        fromNetworkID: number,
         index: number,
         mainnetExitRoot: string,
         rollupExitRoot: string,
@@ -89,6 +90,7 @@ export class ZkEvmBridge extends BaseToken<IZkEvmClientConfig> {
         return this.method(
             "claimAsset",
             smtProof,
+            fromNetworkID,
             index,
             mainnetExitRoot,
             rollupExitRoot,
@@ -157,6 +159,7 @@ export class ZkEvmBridge extends BaseToken<IZkEvmClientConfig> {
      */
     claimMessage(
         smtProof: string[],
+        fromNetworkID: number,
         index: number,
         mainnetExitRoot: string,
         rollupExitRoot: string,
@@ -170,6 +173,7 @@ export class ZkEvmBridge extends BaseToken<IZkEvmClientConfig> {
         return this.method(
           "claimMessage",
           smtProof,
+          fromNetworkID,
           index,
           mainnetExitRoot,
           rollupExitRoot,
