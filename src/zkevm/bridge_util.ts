@@ -85,10 +85,11 @@ export class BridgeUtil {
             });
     }
 
-    private getProof_(networkId: number, depositCount: number) {
+    private getProof_(networkId: number, toNetworkId: number, depositCount: number) {
         return service.zkEvmNetwork.getMerkleProofForZkEvm(
             this.client_.config.version,
             networkId,
+            toNetworkId,
             depositCount,
         ).then(proof => {
             return proof as IMerkleProof;
@@ -111,7 +112,7 @@ export class BridgeUtil {
                 amount,
                 metadata,
                 depositCount } = data;
-            return this.getProof_(networkId, depositCount).then(proof => {
+            return this.getProof_(networkId, destinationNetwork, depositCount).then(proof => {
                 const payload = {} as IClaimPayload;
                 payload.smtProof = proof.merkle_proof;
                 payload.index = depositCount;

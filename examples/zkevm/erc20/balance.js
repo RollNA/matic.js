@@ -2,11 +2,11 @@ const { getZkEvmClient, zkEvm, from } = require('../../utils_zkevm');
 
 const execute = async () => {
   const client = await getZkEvmClient();
-  const erc20Token = client.erc20(zkEvm.child.erc20);
+  const erc20Token = client.erc20(zkEvm.parent.erc20, true);
 
   const result = await erc20Token.getBalance(from);
 
-  console.log("result", result);
+  console.log("result", result.toString());
 
 }
 execute().then(() => {

@@ -3,7 +3,7 @@ const { getZkEvmClient, from, zkEvm } = require('../utils_zkevm');
 const execute = async () => {
     const client = await getZkEvmClient();
 
-    const isExited = await client.isExited('0x3ce9d872a615ee7c1e78a528d9c3a75bbd4969ce5c4329e665736331fd307f15');
+    const isExited = await client.isExited('0x7d9321097f73d64a9fecfaea653ea95423a7a4b19703e7e0bb357ce707fca4c1');
 
     console.log("isExited", isExited);
 }

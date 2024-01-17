@@ -1,4 +1,4 @@
 export const config = {
-  abiStoreUrl: 'https://static.polygon.technology/network/',
-  zkEvmBridgeService: 'https://proof-generator.polygon.technology/',
+  abiStoreUrl: 'https://static.cyclenetwork.io/network/',
+  zkEvmBridgeService: 'https://proof-generator.cyclenetwork.io/',
 }

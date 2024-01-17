@@ -1,5 +1,5 @@
 const { getZkEvmClient, zkEvm, from } = require('../../utils_zkevm');
-const transactionHash = '0x4cd97048e77215b93bbfeb1e5ee7eadef74cccba13de7cd286e55f17726385c2';
+const transactionHash = '0x1b98ed8e44d77a55467f80dda2169b46dcc1f34d8ea48d1e49d9a44b728ebbe2';
 
 const execute = async () => {
   const client = await getZkEvmClient();

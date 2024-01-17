@@ -13,7 +13,8 @@ export class NetworkService {
     }
 
     private createUrlForZkEvm(version: string, url: string) {
-        return `${version}/${url}`;
+        //return `${version}/${url}`;
+        return url;
     }
 
     getBlockIncluded(version: string, blockNumber: number) {
@@ -46,8 +47,8 @@ export class NetworkService {
         });
     }
 
-    getMerkleProofForZkEvm(version: string, networkID: number, depositCount: number) {
-        const url = this.createUrlForZkEvm(version, `merkle-proof?net_id=${networkID}&deposit_cnt=${depositCount}`);
+    getMerkleProofForZkEvm(version: string, networkID: number, toNetworkID: number, depositCount: number) {
+        const url = this.createUrlForZkEvm(version, `merkle-proof?net_id=${networkID}&deposit_cnt=${depositCount}&dest_network=${toNetworkID}`);
         return this.httpRequest.get<any>(url).then(result => {
             return result.proof;
         });

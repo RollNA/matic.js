@@ -55,7 +55,7 @@ export class ZkEvmClient extends ZkEvmBridgeClient {
                 if (urlConfig.zkEvmBridgeService[urlConfig.zkEvmBridgeService.length - 1] !== '/') {
                     urlConfig.zkEvmBridgeService += '/';
                 }
-                urlConfig.zkEvmBridgeService += 'api/zkevm/';
+                //urlConfig.zkEvmBridgeService += 'api/zkevm/';
                 service.zkEvmNetwork = new NetworkService(urlConfig.zkEvmBridgeService);
             }
 

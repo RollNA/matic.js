@@ -1,7 +1,7 @@
 {
-  "name": "@maticnetwork/maticjs",
-  "version": "3.7.7",
-  "description": "Javascript developer library for interacting with Matic Network",
+  "name": "@cyclenetwork/cyclejs",
+  "version": "0.0.1",
+  "description": "Javascript developer library for interacting with Cycle Network",
   "main": "dist/npm.export.js",
   "types": "dist/ts/index.d.ts",
   "browser": "dist/matic.umd.js",
@@ -27,25 +27,23 @@
     "build:test": "npm run build:pack && npm run test",
     "test": "cd test && npm run install:lib:test",
     "debug": "npm run build:pack && cd test && npm run install:lib:debug",
-    "testrpc": "ganache-cli --mnemonic 'clock radar mass judge dismiss just intact mind resemble fringe diary casino' --gasLimit 13000000",
-    "install:example": "cd examples && npm i ../maticnetwork-maticjs-3.5.0.tgz --no-save"
+    "testrpc": "ganache-cli --mnemonic 'clock radar mass judge dismiss just intact mind resemble fringe diary casino' --gasLimit 13000000"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maticnetwork/matic.js.git"
+    "url": "git+https://github.com/RollNA/cycle.js.git"
   },
   "keywords": [
     "ethereum",
     "web3",
     "ethers",
-    "matic"
+    "cycle"
   ],
-  "author": "Jaynti Kanani <jd@matic.network>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/maticnetwork/matic.js/issues"
+    "url": "https://github.com/RollNA/cycle.js/issues"
   },
-  "homepage": "https://github.com/maticnetwork/matic.js#readme",
+  "homepage": "https://github.com/RollNA/cycle.js#readme",
   "dependencies": {
     "@ethereumjs/block": "^3.6.2",
     "ethereumjs-util": "^7.1.4",
